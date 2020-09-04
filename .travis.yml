@@ -5,6 +5,8 @@ python:
 
 before_script:
   - pip install -r requirements.txt
+  - https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_win32.zip
+  - wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_win32.zip
 
 services:
   - postgresql
