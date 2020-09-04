@@ -9,4 +9,4 @@ services:
   - postgresql
 
 script:
-  - manage.py test Projet10
+  - manage.py test purbeurre
