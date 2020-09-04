@@ -11,12 +11,11 @@ before_script:
   - wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_win32.zip
   - unzip chromedriver_win32.zip
   - rm chromedriver_win32.zip
+  - export CHROME_BIN=chromium-browser
 
 services:
   - postgresql
 
-env:
-  - DJANGO_SETTINGS_MODULE=purbeurre.settings
-  - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+env: DJANGO_SETTINGS_MODULE=purbeurre.settings
 
 script: python manage.py test
