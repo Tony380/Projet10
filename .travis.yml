@@ -1,9 +1,14 @@
 language: python
 
-python: '3.8'
+python:
+  - '3.8'
 
-env: DJANGO=3.1 DB=postgres
+before_script:
+  - pip install -r requirements.txt
 
-install: pip install -r requirements.txt
+services:
+  - postgresql
+
+env: DJANGO_SETTINGS_MODULE=purbeurre.settings.travis
 
 script: python manage.py test
