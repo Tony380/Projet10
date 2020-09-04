@@ -9,4 +9,4 @@ services:
   - postgresql
 
 script:
-  - py manage.py test
+  - manage.py test
