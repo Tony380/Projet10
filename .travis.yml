@@ -9,6 +9,6 @@ before_script:
 services:
   - postgresql
 
-env: DJANGO_SETTINGS_MODULE=purbeurre.travis
+env: DJANGO_SETTINGS_MODULE=purbeurre.settings
 
 script: python manage.py test
