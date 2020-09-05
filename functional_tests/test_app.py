@@ -10,10 +10,7 @@ class TestApp(StaticLiveServerTestCase):
 
     def setUp(self):
         options = Options()
-        options.add_argument('--disable-infobars')
-        options.add_argument('--disable-dev-shm-usage')
-        options.add_argument('--no-sandbox')
-        options.add_argument('--remote-debugging-port=9222')
+        options.add_argument('headless')
         self.driver = webdriver.Chrome(chrome_options=options)
 
     def test_register_form_submission_with_button(self):
