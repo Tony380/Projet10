@@ -9,7 +9,7 @@ addons:
   chrome: stable
 
 before_script:
-  - wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip
+  - wget https://chromedriver.storage.googleapis.com/85.0.4183.87/chromedriver_linux64.zip
   - sudo unzip chromedriver_linux64.zip -d /usr/local/bin/chromedriver
   - export PATH="$PATH:/usr/local/bin/chromedriver"
 
