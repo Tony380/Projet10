@@ -7,6 +7,7 @@ addons:
   chrome: stable
 
 before_script:
+  - PATH=$PATH
   - pip install -r requirements.txt
   - wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_win32.zip
   - unzip chromedriver_win32.zip -d /home/travis/virtualenv/python3.8/bin/
@@ -19,4 +20,4 @@ env: DJANGO_SETTINGS_MODULE=purbeurre.settings
 
 script:
   - whereis chromedriver
-  - python manage.py test
+  - python manage.py test functional_tests
