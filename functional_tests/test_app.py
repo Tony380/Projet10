@@ -13,6 +13,7 @@ class TestApp(StaticLiveServerTestCase):
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         self.driver = webdriver.Chrome(chrome_options=options)
+        self.driver.get('https://www.google.com/')
 
     def test_register_form_submission_with_button(self):
         self.driver.get(str(self.live_server_url) + '/users/register')
