@@ -1,5 +1,6 @@
 """ This file contains a Selenium test """
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import time
 
@@ -8,7 +9,7 @@ class TestApp(StaticLiveServerTestCase):
     """Test correct register form submission"""
 
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(ChromeDriverManager().install())
 
     def test_register_form_submission_with_button(self):
         self.driver.get(str(self.live_server_url) + '/users/register')
