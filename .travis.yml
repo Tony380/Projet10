@@ -6,7 +6,7 @@ python:
 before_script:
   - pip install -r requirements.txt
   - wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_win32.zip
-  - sudo unzip chromedriver_win32.zip -d /usr/local/bin/chromedriver
+  - unzip chromedriver_win32.zip -d /usr/local/bin/chromedriver
   - export PATH="$PATH:/usr/local/bin/chromedriver"
 
 services:
