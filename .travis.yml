@@ -12,4 +12,4 @@ services:
 env: DJANGO_SETTINGS_MODULE=purbeurre.settings
 
 script:
-  - python manage.py test
+  - python manage.py test functional_tests
