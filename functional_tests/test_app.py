@@ -2,13 +2,16 @@
 from selenium import webdriver
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import time
+from selenium.webdriver.chrome.options import Options
 
 
 class TestApp(StaticLiveServerTestCase):
     """Test correct register form submission"""
 
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        options = Options()
+        options.add_argument('--no-sandbox')
+        self.driver = webdriver.Chrome(chrome_options=options)
 
     def test_register_form_submission_with_button(self):
         self.driver.get(str(self.live_server_url) + '/users/register')
