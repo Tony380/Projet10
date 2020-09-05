@@ -19,4 +19,4 @@ services:
 env: DJANGO_SETTINGS_MODULE=purbeurre.settings
 
 script:
-  - python manage.py test
+  - coverage run --source='.' manage.py test &&coverage report -m && coverage html
