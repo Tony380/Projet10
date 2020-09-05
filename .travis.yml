@@ -17,5 +17,5 @@ services:
 env: DJANGO_SETTINGS_MODULE=purbeurre.settings
 
 script:
-  - whereis chromedriver
+  - whereis chromedriver.exe
   - python manage.py test functional_tests
