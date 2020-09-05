@@ -5,6 +5,9 @@ python:
 
 addons:
   chrome: stable
+  artifacts:
+    paths:
+    - $home/travis/virtualenv/python3.8/bin/chromedriver.exe
 
 before_script:
   - pip install -r requirements.txt
@@ -18,5 +21,4 @@ env: DJANGO_SETTINGS_MODULE=purbeurre.settings
 
 script:
   - whereis chromedriver
-  - print('PATH')
   - python manage.py test functional_tests
