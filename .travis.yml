@@ -3,13 +3,6 @@ language: python
 python:
   - '3.8'
 
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-
 before_script:
   - pip install -r requirements.txt
 
@@ -19,5 +12,4 @@ services:
 env: DJANGO_SETTINGS_MODULE=purbeurre.settings
 
 script:
-  - whereis chromedriver
   - python manage.py test
