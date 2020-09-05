@@ -9,9 +9,8 @@ addons:
 before_script:
   - pip install -r requirements.txt
   - wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_win32.zip
-  - unzip chromedriver_win32.zip -d /home/travis/virtualenv/python3.8/bin/
+  - unzip chromedriver_win32.zip -d /home/travis/
   - export CHROME_BIN=chromium-browser
-  - PATH="/home/travis/virtualenv/python3.8/bin/chromedriver.exe"
 
 services:
   - postgresql
