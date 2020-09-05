@@ -18,4 +18,5 @@ env: DJANGO_SETTINGS_MODULE=purbeurre.settings
 
 script:
   - whereis chromedriver
+  - print('PATH')
   - python manage.py test functional_tests
