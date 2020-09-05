@@ -8,8 +8,9 @@ addons:
 
 before_script:
   - pip install -r requirements.txt
-  - wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_win32.zip
-  - unzip chromedriver_win32.zip -d /home/travis/virtualenv/python3.8/bin/
+  - wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip
+  - sudo unzip chromedriver_linux64.zip -d /usr/local/bin/chromedriver
+  - export PATH="$PATH:/usr/local/bin/chromedriver"
 
 services:
   - postgresql
@@ -17,5 +18,5 @@ services:
 env: DJANGO_SETTINGS_MODULE=purbeurre.settings
 
 script:
-  - whereis chromedriver.exe
+  - whereis chromedriver
   - python manage.py test functional_tests
