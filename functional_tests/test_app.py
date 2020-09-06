@@ -13,7 +13,7 @@ class TestApp(StaticLiveServerTestCase):
         options = Options()
         """for travis ci"""
         if os.environ.get('ENV') == 'PRODUCTION':
-            options.add_argument('headless')
+            options.add_argument('--headless')
 
         self.driver = webdriver.Chrome(chrome_options=options)
 
