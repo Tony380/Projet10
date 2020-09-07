@@ -14,9 +14,16 @@ class Command(BaseCommand):
         name = ["Pâtes à tartiner aux noisettes et au cacao",
                 "Muffins", "Biscuits", "Tortellini", "Viennoiseries",
                 "Taboulés", "Confitures", "Cassoulets", "Yaourts", "Sodas"]
+        self.stdout.write('Réinitialisation de la base de données')
+        Category.objects.all().delete()
+        Product.objects.all().delete()
+        self.stdout.write('Base de données réinitialisée avec succès')
+        cat_id = 1
+        prod_id = 1
         for element in name:
             self.stdout.write('Import de la catégorie {}'.format(element))
-            cat = Category.objects.create(name=element)
+            cat = Category.objects.create(id=cat_id, name=element)
+            cat_id += 1
             self.stdout.write(
                 'Import des produits de la catégorie {}'.format(element))
             payload = {"search_terms": "{}".format(cat),
@@ -34,6 +41,7 @@ class Command(BaseCommand):
                                 i.get("nutrition_grades", False) and\
                                 i.get("image_front_url", False):
                             product = Product.objects.create(
+                                id=prod_id,
                                 name=i["product_name"],
                                 brands=i["brands"],
                                 link=i["url"],
@@ -45,6 +53,7 @@ class Command(BaseCommand):
                                 sugars=i["nutriments"]["sugars_100g"],
                                 salt=i["nutriments"]["salt_100g"], )
                             cat.products.add(product)
+                            prod_id += 1
 
                 except IntegrityError:
                     pass
