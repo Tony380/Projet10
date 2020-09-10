@@ -3,6 +3,7 @@ from .models import Product, Favorite
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from sentry_sdk import capture_message
 
 
 def paginate(request, args, prods_per_page):
@@ -23,6 +24,8 @@ def paginate(request, args, prods_per_page):
 def search(request):
     """ Display product or products matching the user's request """
     query = request.GET.get('query')
+    capture_message(query)
+
     if query:
         # search by product name
         products = Product.objects.filter(
