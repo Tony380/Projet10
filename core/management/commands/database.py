@@ -1,4 +1,4 @@
-""" Contains database filler """
+""" Contains database filler or updater """
 from django.core.management.base import BaseCommand
 from core.models import Category, Product
 from django.db.utils import IntegrityError
@@ -7,22 +7,18 @@ from django.db import transaction
 
 
 class Command(BaseCommand):
-    help = 'Fill the database with OpenFoodFacts data'
+    help = 'Fill or update the database with OpenFoodFacts data'
 
     def handle(self, *args, **options):
         # Chosen categories
         name = ["Pâtes à tartiner aux noisettes et au cacao",
                 "Muffins", "Biscuits", "Tortellini", "Viennoiseries",
                 "Taboulés", "Confitures", "Cassoulets", "Yaourts", "Sodas"]
-        self.stdout.write('Réinitialisation de la base de données')
-        Category.objects.all().delete()
-        Product.objects.all().delete()
-        self.stdout.write('Base de données réinitialisée avec succès')
         cat_id = 1
         prod_id = 1
         for element in name:
             self.stdout.write('Import de la catégorie {}'.format(element))
-            cat = Category.objects.create(id=cat_id, name=element)
+            cat = Category.objects.update_or_create(id=cat_id, name=element)
             cat_id += 1
             self.stdout.write(
                 'Import des produits de la catégorie {}'.format(element))
@@ -40,7 +36,7 @@ class Command(BaseCommand):
                                 i.get("brands", False) and \
                                 i.get("nutrition_grades", False) and\
                                 i.get("image_front_url", False):
-                            product = Product.objects.create(
+                            product = Product.objects.update_or_create(
                                 id=prod_id,
                                 name=i["product_name"],
                                 brands=i["brands"],
@@ -52,10 +48,15 @@ class Command(BaseCommand):
                                 ["saturated-fat_100g"],
                                 sugars=i["nutriments"]["sugars_100g"],
                                 salt=i["nutriments"]["salt_100g"], )
-                            cat.products.add(product)
+                            try:
+                                cat.products.add(product)
+                            except AttributeError:
+                                pass
+
                             prod_id += 1
 
                 except IntegrityError:
                     pass
 
-        self.stdout.write('Base de données remplie avec succès')
+        self.stdout.write('Base de données mise à jour avec succès!')
+

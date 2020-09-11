@@ -147,8 +147,8 @@ class TestProduct(TestCase):
                          'nametest remplace : name sauvegardé par : name')
 
 
-class TestFillDatabase(TestCase):
-    def test_fill_database(self):
+class TestDatabase(TestCase):
+    def test_database(self):
         out = StringIO()
-        call_command('fill_database', stdout=out)
-        self.assertIn('Base de données remplie avec succès', out.getvalue())
+        call_command('database', stdout=out)
+        self.assertIn('Base de données mise à jour avec succès!', out.getvalue())
