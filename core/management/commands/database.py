@@ -57,6 +57,8 @@ class Command(BaseCommand):
 
                 except IntegrityError:
                     pass
+                except Exception as error:
+                    print(error, 'Une erreur est survenue avec : ', product)
 
         self.stdout.write('Base de données mise à jour avec succès!')
 
