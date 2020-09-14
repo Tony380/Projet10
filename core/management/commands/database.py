@@ -50,6 +50,7 @@ class Command(BaseCommand):
                                 salt=i["nutriments"]["salt_100g"], )
                             try:
                                 cat.products.add(product)
+                                self.stdout.write('Un nouveau produit à été ajouté : ', product)
                             except AttributeError:
                                 pass
 

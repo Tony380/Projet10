@@ -3,3 +3,5 @@ __pycache__/
 /htmlcov/
 .coverage
 purbeurre/settings/production.py
+db_update.sh
+database.log
